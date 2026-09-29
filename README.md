@@ -1,8 +1,8 @@
 <div align="center">
   <img src="assets/logo.png" alt="MaLiang-Harness logo" width="50" />
-  <h1>MaLiang-Harness</h1>
+  <h1>MaLiang-Harness: A Programmable Path to Image and Video Generation</h1>
   <p><strong>English</strong> | <a href="README.zh-CN.md">简体中文</a></p>
-  <p><strong>A Programmable Path to Image and Video Generation</strong></p>
+  <!-- <p><strong>A Programmable Path to Image and Video Generation</strong></p> -->
   <!-- Add destination links around these badges when the publication URLs are available. -->
   <p>
     <img src="https://img.shields.io/badge/%F0%9F%8C%90_Project_Page-2563EB?style=flat-square" alt="Project Page — Link pending" title="Link pending" />
