@@ -1,2 +1,0 @@
-{"case_id": "blue-circle", "prompt": "Draw one blue circle centered on a plain white background.", "spec": {"width": 512, "height": 512, "format": "png"}, "allowed_backends": ["canvas", "svg", "scene2d"]}
-{"case_id": "moving-sun", "prompt": "Create a silent three-second animation: an orange sun moves smoothly from left to right over a navy mountain silhouette.", "spec": {"width": 640, "height": 360, "duration": 3, "fps": 12, "format": "mp4"}, "allowed_backends": ["canvas", "scene2d", "svg_animation"]}

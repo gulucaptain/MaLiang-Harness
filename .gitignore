@@ -1,53 +1,6 @@
-.venv/
+.DS_Store
+node_modules/
+dist/
 .env
 .env.*
 !.env.example
-__pycache__/
-*.pyc
-.pytest_cache/
-.ruff_cache/
-runs/
-dist/
-*.egg-info/
-
-node_modules/
-
-# Local UI reference checkouts (including their independent Git histories).
-/assets/ai-chatbot/
-/assets/chatgpt-ui-clone/
-
-# Local authentication files and private-key containers.
-/credentials.json
-/secrets.json
-/auth.json
-/secrets/
-*.pem
-*.p12
-*.pfx
-id_rsa
-id_ed25519
-
-# Local configuration, caches and generated runtime data
-.DS_Store
-*.local.json
-*.log
-*.sqlite
-*.sqlite3
-*.sqlite-wal
-*.sqlite-shm
-.test_tmp/
-.smoke_offline/
-# User datasets and generated evaluation output
-/benchmarks/datasets/
-/benchmarks/results/
-
-# Local research archive; excluded from the public release.
-/experiments/
-
-# Internal architecture notes and development records; keep locally.
-/docs/IMPLEMENTATION.md
-/docs/OBJECT_CONTROL.md
-/docs/STRUCTURE.md
-/docs/MIGRATION.md
-/docs/VALIDATION.md
-/docs/RELEASE_REVIEW.md

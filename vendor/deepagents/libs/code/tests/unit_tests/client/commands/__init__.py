@@ -1,1 +1,0 @@
-"""Client command unit tests."""
