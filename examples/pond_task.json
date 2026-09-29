@@ -1,0 +1,11 @@
+{
+  "prompt": "创作一段三秒循环水墨动画：米白宣纸背景，红黑两条锦鲤绕池塘游动，右侧竹叶，左下角朱红印章。保持纸张纹理稳定，鱼的运动自然，首尾衔接。",
+  "spec": {"width": 640, "height": 480, "duration": 3, "fps": 12, "format": "mp4", "seed": 42},
+  "allowed_backends": ["canvas"],
+  "allow_generated_assets": false,
+  "requirements": [
+    {"id": "composition", "kind": "visual", "description": "两条锦鲤、池塘、右侧竹叶和左下印章在实际输出中清晰可见"},
+    {"id": "ink_style", "kind": "style", "description": "实际画幅下有可辨认的水墨与宣纸质感，纸张纹理不随时间闪烁"},
+    {"id": "loop", "kind": "temporal", "description": "锦鲤运动连续，首尾附近的位置和运动衔接自然；检查多个时刻及边界片段"}
+  ]
+}

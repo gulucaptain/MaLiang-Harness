@@ -1,0 +1,6 @@
+{
+  "prompt": "创作一张简洁的几何海报：米白背景，橙色太阳，深蓝山峰，采用 SVG。",
+  "spec": {"width": 512, "height": 512, "format": "png"},
+  "allowed_backends": ["svg"],
+  "requirements": [{"id": "composition", "kind": "visual", "description": "米白背景、橙色太阳和深蓝山峰构图符合海报要求"}]
+}

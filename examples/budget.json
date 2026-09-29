@@ -1,0 +1,8 @@
+{
+  "max_model_calls": 24,
+  "max_tool_calls": 80,
+  "max_frames": 2000,
+  "max_seconds": 1800,
+  "max_input_tokens": 300000,
+  "max_output_tokens": 60000
+}

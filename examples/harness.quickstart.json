@@ -1,0 +1,102 @@
+{
+  "mode": "maliang",
+  "efficiency": {
+    "max_batch_steps": 16,
+    "recent_image_messages": 4,
+    "max_image_replay_turns": 1
+  },
+  "model": {
+    "name": "REPLACE_WITH_YOUR_MODEL",
+    "timeout_seconds": 300,
+    "max_retries": 0,
+    "max_output_tokens_per_call": 12000
+  },
+  "budget": {
+    "max_model_calls": 20,
+    "max_tool_calls": 80,
+    "max_frames": 300,
+    "max_seconds": 900,
+    "max_input_tokens": 200000,
+    "max_output_tokens": 40000,
+    "max_asset_api_calls": 4
+  },
+  "image": {
+    "prompt": "Draw one blue circle centered on a white background.",
+    "output": {
+      "width": 512,
+      "height": 512,
+      "duration": 3,
+      "fps": 12,
+      "format": "png",
+      "seed": 42
+    },
+    "allowed_backends": [
+      "scene2d",
+      "canvas",
+      "svg"
+    ],
+    "allow_generated_assets": false
+  },
+  "image_generation": {
+    "enabled": false,
+    "workflow": "code_directed",
+    "conservative_planning": true,
+    "max_generated_components": 1,
+    "max_repair_area_fraction": 0.6,
+    "cutout_default_tolerance": 40,
+    "cutout_default_feather_px": 0.8,
+    "provider": "qwen",
+    "model": "qwen-image",
+    "api_key_env": "DASHSCOPE_API_KEY",
+    "base_url": "https://dashscope.aliyuncs.com/api/v1",
+    "size": "1328*1328",
+    "prompt_extend": true,
+    "timeout_seconds": 180,
+    "poll_interval_seconds": 2
+  },
+  "video": {
+    "prompt": "创作一段三秒二维动画：米白背景，橙色太阳从左向右缓慢移动。",
+    "output": {
+      "width": 1280,
+      "height": 720,
+      "duration": 3,
+      "fps": 24,
+      "format": "mp4",
+      "seed": 42
+    },
+    "allowed_backends": [
+      "scene2d",
+      "canvas",
+      "svg_animation",
+      "three"
+    ],
+    "allow_generated_assets": false
+  },
+  "paint": {
+    "prompt": "用真实笔刷绘制一幅静物画，从构图、大色块到明暗和细节逐步完善。",
+    "output": {
+      "width": 1024,
+      "height": 1024,
+      "duration": 3,
+      "fps": 12,
+      "format": "png",
+      "seed": 42
+    },
+    "allowed_backends": [
+      "paint"
+    ],
+    "allow_generated_assets": false
+  },
+  "pathtrace": {
+    "prompt": "创作写实静物：暖灰桌面上的象牙白陶瓷碗、金属球与透明玻璃杯。统一柔和侧光，明确接触阴影和材质差异。",
+    "output": {
+      "width": 768,
+      "height": 768,
+      "format": "png"
+    },
+    "allowed_backends": [
+      "pathtrace"
+    ],
+    "allow_generated_assets": false
+  }
+}

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MaLiang-Harness · 创作工作台</title>
+    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <link rel="stylesheet" href="/studio.css" />
+  </head>
+  <body>
+    <header class="brandbar">
+      <a class="brand" href="/" aria-label="MaLiang-Harness 首页">
+        <img class="brand-logo" src="/assets/logo.png" alt="" width="34" height="40" />
+        <strong class="brand-name">MaLiang-Harness</strong>
+      </a>
+      <a class="back-to-chat" href="/">← 返回对话</a>
+      <button id="refreshHistory" class="quiet">刷新任务</button>
+    </header>
+    <nav class="modules" aria-label="功能板块">
+      <button data-mode="image" aria-pressed="true">
+        <span><strong>图像生成</strong></span>
+      </button>
+      <button data-mode="video" aria-pressed="false">
+        <span><strong>视频生成</strong></span>
+      </button>
+      <button data-mode="history" aria-pressed="false">
+        <span><strong>历史与编辑</strong></span>
+      </button>
+      <button data-mode="paint" aria-pressed="false">
+        <span><strong>笔触绘画</strong></span>
+      </button>
+      <button data-mode="pathtrace" aria-pressed="false">
+        <span><strong>写实渲染</strong></span>
+      </button>
+    </nav>
+    <div class="taskbar">
+      <label for="history">当前任务</label
+      ><select id="history">
+        <option value="">选择已有任务…</option>
+      </select>
+      <label for="maxOutputTokens">单次输出上限 / Tokens</label>
+      <input id="maxOutputTokens" type="number" min="1" max="1000000" step="1"
+        placeholder="配置默认" title="留空使用配置默认；续跑沿用原任务设置。实际上限取决于模型。" />
+    </div>
+    <div id="error" role="alert" hidden></div>
+    <main class="workspace">
+      <aside class="rail panel">
+        <section id="createPanel" class="create-panel">
+          <div class="section-heading">
+            <h2 id="createTitle">生成一张图像</h2>
+            <button id="clearTask" class="quiet">新任务</button>
+          </div>
+          <div id="paintInfo" class="paint-info" hidden>
+            <p>用真实笔刷逐步创作，支持分层、压力、柔边、涂抹与擦除。保留笔触记录，可在历史中比较和继续编辑。</p>
+            <p id="paintStatus" role="status">正在检查绘画引擎…</p>
+          </div>
+          <div id="pathtraceInfo" class="paint-info" hidden>
+            <p>通过三维形状、真实材质和光照创作静物。支持快速预览与精细 PNG 导出，可在历史中比较和继续编辑。</p>
+            <p id="pathtraceStatus" role="status">正在检查渲染引擎…</p>
+          </div>
+          <form id="form">
+            <label class="sr-only" for="prompt">创作要求</label
+            ><textarea
+              id="prompt"
+              required
+              maxlength="20000"
+              placeholder="描述你想生成的画面…"
+            ></textarea>
+            <div id="videoFields" class="field-row" hidden>
+              <label
+                >时长 / 秒<input
+                  id="duration"
+                  type="number"
+                  min="1"
+                  max="120"
+                  step="1"
+                  value="10" /></label
+              ><label
+                >帧率<select id="fps">
+                  <option>12</option>
+                  <option selected>24</option>
+                  <option>30</option>
+                </select></label
+              >
+            </div>
+            <details class="settings">
+              <summary>尺寸与参考图</summary>
+              <div class="field-row">
+                <select id="orientation" aria-label="画布方向">
+                  <option value="auto">自动方向</option>
+                  <option value="landscape">横版</option>
+                  <option value="portrait">竖版</option>
+                  <option value="square">正方形</option></select
+                ><select id="resolution" aria-label="分辨率">
+                  <option value="profile">配置默认</option>
+                  <option value="standard">标准</option>
+                  <option value="high">高清</option>
+                </select>
+              </div>
+              <label class="file-label"
+                >参考图（可选）<input
+                  id="inputImage"
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+              /></label>
+            </details>
+            <button id="submit" class="primary" type="submit">
+              开始生成图像 <span>↗</span>
+            </button>
+          </form>
+        </section>
+        <section id="historyIntro" class="history-intro" hidden>
+          <h2>版本记录</h2>
+          <div id="lineage"></div>
+        </section>
+        <div class="rail-tabs" role="tablist" aria-label="过程导航">
+          <button id="stepsTab" role="tab" aria-selected="true">
+            执行步骤 <span id="stepCount">0</span></button
+          ><button id="versionsTab" role="tab" aria-selected="false">
+            历史版本 <span id="versionCount">0</span>
+          </button>
+        </div>
+        <div class="rail-search">
+          <input
+            id="stepSearch"
+            aria-label="搜索步骤或版本"
+            placeholder="搜索步骤或版本…"
+          />
+        </div>
+        <div id="steps" class="nav-list" role="tabpanel">
+          <p class="empty-small">暂无步骤</p>
+        </div>
+        <div id="versions" class="nav-list" role="tabpanel" hidden></div>
+        <button id="moreSteps" class="quiet" hidden>显示更早步骤</button>
+      </aside>
+      <section class="viewer panel">
+        <div class="viewer-heading">
+          <div>
+            <p id="runLabel" class="eyebrow">预览</p>
+            <h1 id="selectedLabel">作品预览</h1>
+          </div>
+          <span id="selectedMeta" class="muted"></span>
+        </div>
+        <div class="view-tools">
+          <button id="follow" aria-pressed="true">跟随最新</button
+          ><label
+            ><input id="autoPreview" type="checkbox" checked />自动预览</label
+          ><button id="previewVersion" disabled>渲染此版本</button
+          ><button id="toEdit" disabled>编辑此版本</button>
+        </div>
+        <div id="selectionNote" class="selection-note"></div>
+        <div id="canvasArea" class="canvas-area">
+          <div id="versionPreview" class="art-stage">
+            <div class="welcome">
+              <h2 id="welcomeTitle">创建图像</h2>
+              <p>输入描述，开始生成。</p>
+            </div>
+          </div>
+          <div id="comparison" class="comparison" hidden>
+            <figure>
+              <figcaption>对比版本</figcaption>
+              <div id="beforeView"></div>
+            </figure>
+            <figure>
+              <figcaption>当前查看版本</figcaption>
+              <div id="afterView"></div>
+            </figure>
+          </div>
+        </div>
+        <div id="mediaStrip" class="media-strip"></div>
+        <div class="viewer-footer">
+          <a id="openMedia" href="#" target="_blank" rel="noopener" hidden
+            >打开原图 ↗</a
+          >
+          <span id="outputSpec">尚无输出</span
+          ><span id="previewStatus" role="status"></span>
+        </div>
+        <div class="compare-bar">
+          <label><input id="compareToggle" type="checkbox" />版本对比</label
+          ><select id="compareRevision" aria-label="对比版本" disabled></select
+          ><span id="renderProgress" class="muted"></span>
+        </div>
+      </section>
+      <aside class="inspector panel">
+        <section class="run-monitor" aria-label="任务运行监控">
+          <div class="monitor-heading">
+            <h2>任务状态</h2>
+            <button id="resume" class="quiet" disabled>续跑任务</button>
+          </div>
+          <div class="monitor-state">
+            <strong id="status" role="status">未选择</strong>
+            <div class="revision-stat">
+              <span>当前版本</span><strong id="currentRevision">—</strong>
+            </div>
+          </div>
+          <p id="activity" class="monitor-activity">等待任务</p>
+          <dl class="call-stats" aria-label="累计调用次数">
+            <div title="当前任务累计发起的 LLM 调用">
+              <dt>LLM</dt>
+              <dd id="llmCalls">—</dd>
+            </div>
+            <div title="当前任务累计工具调用，包含批量调用中的子工具">
+              <dt>工具</dt>
+              <dd id="toolCalls">—</dd>
+            </div>
+            <div
+              title="图像生成 API 的提交次数，包含失败尝试；轮询和缓存复用不重复计数"
+            >
+              <dt>Image Gen</dt>
+              <dd id="imageGenCalls">—</dd>
+            </div>
+          </dl>
+          <p id="viewingRevision" class="viewing-revision" hidden></p>
+        </section>
+        <div class="inspector-tabs" role="tablist" aria-label="步骤详情">
+          <button data-detail="intent" role="tab" aria-selected="true">
+            操作说明</button
+          ><button data-detail="code" role="tab" aria-selected="false">
+            代码与变更</button
+          ><button data-detail="logs" role="tab" aria-selected="false">
+            记录
+          </button>
+        </div>
+        <div class="inspector-content">
+          <section id="detail-intent" role="tabpanel">
+            <p
+              class="eyebrow"
+              id="intentSource"
+              title="来源于模型公开回复或工具记录"
+            >
+              步骤详情
+            </p>
+            <h2 id="stepTitle">等待任务开始</h2>
+            <p id="intentText" class="explanation">选择步骤查看详情。</p>
+
+            <div id="stepOutcome"></div>
+            <details>
+              <summary>计划与要求</summary>
+              <pre id="versionDetails">尚无记录</pre>
+            </details>
+            <details>
+              <summary>参考素材</summary>
+              <div id="assets" class="assets"></div>
+            </details>
+          </section>
+          <section id="detail-code" role="tabpanel" hidden>
+            <div class="code-tools">
+              <select id="codeFile" aria-label="选择代码文件"></select
+              ><button id="codeMode" aria-pressed="true">变更 diff</button>
+            </div>
+            <p id="codeNote" class="muted"></p>
+            <pre id="codeContent" class="code-view" tabindex="0">尚无代码</pre>
+          </section>
+          <section id="detail-logs" role="tabpanel" hidden>
+            <div class="field-row">
+              <select id="logType" aria-label="记录类型">
+                <option value="step">所选步骤原始记录</option>
+                <option value="terminal">终端输出</option>
+                <option value="usage">预算与使用量</option></select
+              ><input
+                id="logSearch"
+                aria-label="搜索记录"
+                placeholder="搜索记录…"
+              />
+            </div>
+            <pre id="logContent" class="code-view" tabindex="0">尚无记录</pre>
+          </section>
+        </div>
+        <section id="editPanel" class="edit-panel" hidden>
+          <div class="section-heading">
+            <h2>编辑版本</h2>
+            <span id="editTarget" class="badge">未选择版本</span>
+          </div>
+          <p id="editState" class="muted">保留原版，创建新版本。</p>
+          <form id="editForm">
+            <label class="sr-only" for="editPrompt">修改要求</label
+            ><textarea
+              id="editPrompt"
+              required
+              maxlength="20000"
+              placeholder="描述想修改的内容…"
+            ></textarea
+            ><button id="editSubmit" class="primary" disabled>
+              生成修改版本
+            </button>
+          </form>
+          <p id="editError" role="alert"></p>
+        </section>
+      </aside>
+    </main>
+    <script src="/studio.js"></script>
+  </body>
+</html>

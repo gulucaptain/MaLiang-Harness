@@ -1,0 +1,12 @@
+{
+  "prompt": "创作一段6秒的二维水墨动画：米白宣纸背景、深蓝远山，橙色太阳缓慢横移并在片尾回到起点。纸张纹理稳定，远山位置不变。太阳与远山有清晰层次，整体留白充分。使用可控制的独立对象与自定义代码绘制，无需图像生成服务。",
+  "workflow_policy": "guided",
+  "spec": {"width": 640, "height": 360, "duration": 6, "fps": 12, "format": "mp4", "seed": 42},
+  "allowed_backends": ["scene2d"],
+  "allow_generated_assets": false,
+  "requirements": [
+    {"id": "composition", "description": "实际画面呈现米白背景、橙色太阳、深蓝远山和充分留白", "kind": "visual"},
+    {"id": "ink_style", "description": "纸张和水墨纹理可见，细节不随时间闪烁", "kind": "style", "observation": {"start": 0, "end": 5.9, "samples": 3}},
+    {"id": "motion", "description": "太阳持续横向运动并返回起点，远山保持不动；检查边界附近运动，采样不足时增加观察", "kind": "temporal", "observation": {"start": 0, "end": 5.916666667, "samples": 7}}
+  ]
+}

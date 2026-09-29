@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/langchain-ai/deepagents",
+  "commit": "bc3c2935650f8e8a0862d51226d986d842bd3824",
+  "version": "0.7.15",
+  "checkout": "vendor/deepagents",
+  "python_package": "vendor/deepagents/libs/deepagents",
+  "integration": "editable install; no upstream source modifications"
+}
