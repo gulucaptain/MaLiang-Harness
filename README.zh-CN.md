@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="assets/logo.png" alt="MaLiang-Harness logo" width="50" />
-  <h1>MaLiang-Harness: A Programmable Path to Image and Video Generation</h1>
+  <h1><img src="assets/logo.png" alt="MaLiang-Harness logo" width="30" align="absmiddle" />&nbsp;MaLiang-Harness: A Programmable Path to <br> Image and Video Generation</h1>
   <p><a href="README.md">English</a> | <strong>简体中文</strong></p>
   <!-- <p><strong>A Programmable Path to Image and Video Generation</strong></p> -->
   <!-- Add destination links around these badges when the publication URLs are available. -->
