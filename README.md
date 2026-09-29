@@ -2,12 +2,12 @@
   <h1><img src="assets/logo.png" alt="MaLiang-Harness logo" width="30" align="absmiddle" />&nbsp;MaLiang-Harness: A Programmable Path to <br> Image and Video Generation</h1>
   <p><strong>English</strong> | <a href="README.zh-CN.md">简体中文</a></p>
   <!-- <p><strong>A Programmable Path to Image and Video Generation</strong></p> -->
-  <!-- Add destination links around these badges when the publication URLs are available. -->
   <p>
-    <img src="https://img.shields.io/badge/%F0%9F%8C%90_Project_Page-2563EB?style=flat-square" alt="Project Page — Link pending" title="Link pending" />
-    <img src="https://img.shields.io/badge/arXiv-B31B1B?style=flat-square&amp;logo=arxiv&amp;logoColor=white" alt="arXiv — Link pending" title="Link pending" />
-    <img src="https://img.shields.io/badge/Daily_Papers-FFD21E?style=flat-square&amp;logo=huggingface&amp;logoColor=black" alt="Hugging Face Daily Papers — Link pending" title="Link pending" />
+    <a href="https://gulucaptain.github.io/MaLiang-Harness/"><img src="https://img.shields.io/badge/%F0%9F%8C%90_Project_Page-2563EB?style=flat-square" alt="Project Page" /></a>
+    <a href="https://arxiv.org/abs/2609.34309"><img src="https://img.shields.io/badge/arXiv-B31B1B?style=flat-square&amp;logo=arxiv&amp;logoColor=white" alt="arXiv" /></a>
+    <a href="https://huggingface.co/papers/2609.34309" title="Entry pending"><img src="https://img.shields.io/badge/Daily_Papers-FFD21E?style=flat-square&amp;logo=huggingface&amp;logoColor=black" alt="Hugging Face Daily Papers" /></a>
   </p>
+  <p><small>The Hugging Face Daily Papers entry is not live yet.</small></p>
   <p>Generate images and videos with programs written by multimodal language models.</p>
   <p>
     <a href="#quick-start">Quick Start</a> ·
@@ -227,14 +227,16 @@ Rendering tests require Chromium; painting tests also require libmypaint. Tests 
 
 ## Citation
 
-If you use MaLiang-Harness in your research, please cite the following paper. The arXiv identifier will be added after publication.
+If you use MaLiang-Harness in your research, please cite the following paper.
 
 ```bibtex
 @misc{zhao2026maliangharness,
   title         = {{MaLiang-Harness}: A Programmable Path to Image and Video Generation},
-  author        = {Haoyu Zhao and Zihao Zhang and Xudong Wang and Jiaxi Gu and Zuxuan Wu and Shuicheng Yan},
+  author        = {Haoyu Zhao and Zihao Zhang and Xudong Wang and Jiaxi Gu and Zuxuan Wu and Yu-Gang Jiang and Shuicheng Yan},
   year          = {2026},
-  eprint        = {},
-  archivePrefix = {arXiv}
+  eprint        = {2609.34309},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2609.34309}
 }
 ```

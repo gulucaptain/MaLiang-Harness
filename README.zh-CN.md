@@ -2,12 +2,12 @@
   <h1><img src="assets/logo.png" alt="MaLiang-Harness logo" width="30" align="absmiddle" />&nbsp;MaLiang-Harness: A Programmable Path to <br> Image and Video Generation</h1>
   <p><a href="README.md">English</a> | <strong>简体中文</strong></p>
   <!-- <p><strong>A Programmable Path to Image and Video Generation</strong></p> -->
-  <!-- Add destination links around these badges when the publication URLs are available. -->
   <p>
-    <img src="https://img.shields.io/badge/%F0%9F%8C%90_Project_Page-2563EB?style=flat-square" alt="Project Page — 链接待补充" title="链接待补充" />
-    <img src="https://img.shields.io/badge/arXiv-B31B1B?style=flat-square&amp;logo=arxiv&amp;logoColor=white" alt="arXiv — 链接待补充" title="链接待补充" />
-    <img src="https://img.shields.io/badge/Daily_Papers-FFD21E?style=flat-square&amp;logo=huggingface&amp;logoColor=black" alt="Hugging Face Daily Papers — 链接待补充" title="链接待补充" />
+    <a href="https://gulucaptain.github.io/MaLiang-Harness/"><img src="https://img.shields.io/badge/%F0%9F%8C%90_Project_Page-2563EB?style=flat-square" alt="Project Page" /></a>
+    <a href="https://arxiv.org/abs/2609.34309"><img src="https://img.shields.io/badge/arXiv-B31B1B?style=flat-square&amp;logo=arxiv&amp;logoColor=white" alt="arXiv" /></a>
+    <a href="https://huggingface.co/papers/2609.34309" title="页面待上线"><img src="https://img.shields.io/badge/Daily_Papers-FFD21E?style=flat-square&amp;logo=huggingface&amp;logoColor=black" alt="Hugging Face Daily Papers" /></a>
   </p>
+  <p><small>Hugging Face Daily Papers 对应页面尚未上线。</small></p>
   <p>用多模态语言模型编写程序，生成图像与视频。</p>
   <p>
     <a href="#快速开始">快速开始</a> ·
@@ -227,14 +227,16 @@ python -m ruff check src tests benchmarks examples scripts inference.py web.py
 
 ## 论文引用
 
-如果你的研究使用了 MaLiang-Harness，请引用以下论文。arXiv 编号将在论文上线后补充。
+如果你的研究使用了 MaLiang-Harness，请引用以下论文。
 
 ```bibtex
 @misc{zhao2026maliangharness,
   title         = {{MaLiang-Harness}: A Programmable Path to Image and Video Generation},
-  author        = {Haoyu Zhao and Zihao Zhang and Xudong Wang and Jiaxi Gu and Zuxuan Wu and Shuicheng Yan},
+  author        = {Haoyu Zhao and Zihao Zhang and Xudong Wang and Jiaxi Gu and Zuxuan Wu and Yu-Gang Jiang and Shuicheng Yan},
   year          = {2026},
-  eprint        = {},
-  archivePrefix = {arXiv}
+  eprint        = {2609.34309},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2609.34309}
 }
 ```
