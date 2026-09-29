@@ -2,6 +2,12 @@
 
 Static academic project page for MaLiang-Harness. No build step is required.
 
+## Links
+
+- [Project page](https://gulucaptain.github.io/MaLiang-Harness/)
+- [Code](https://github.com/gulucaptain/MaLiang-Harness)
+- [Paper (arXiv:2609.34309)](https://arxiv.org/abs/2609.34309)
+
 ## Local preview
 
 ```sh
@@ -19,4 +25,4 @@ Open http://127.0.0.1:8768/ .
 - `assets/logo.png` and `assets/icons/`: project logo, resource icons and icon sources.
 - `.nojekyll`: allows direct static hosting with GitHub Pages.
 
-When editing metadata, keep `catalog.json` and `catalog.js` in sync. Video ordering is defined in `index.html`. Offline renderer fixtures are shown separately. arXiv and Daily Papers links are pending.
+When editing metadata, keep `catalog.json` and `catalog.js` in sync. Video ordering is defined in `index.html`. Offline renderer fixtures are shown separately. The Hugging Face Daily Papers link is pending.
