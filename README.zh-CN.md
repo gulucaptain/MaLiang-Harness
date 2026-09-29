@@ -21,6 +21,8 @@ MaLiang-Harness 用多模态语言模型编写绘图和动画程序，生成图�
 
 我们关注的是代码与画面之间的差距：例如，程序没有报错，但物体的位置或运动仍然不符合要求。论文将这一问题称为 Program-to-Visual（P2V）Gap。为此，MaLiang-Harness 保存每次修改的程序版本及对应的渲染结果，让模型在后续修改中参考这些记录，并对准备导出的版本重新检查。
 
+![MaLiang-Harness chat interface](assets/web.png)
+
 ## 核心设计
 
 | 设计 | 实现 |

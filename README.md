@@ -21,6 +21,8 @@ MaLiang-Harness uses multimodal language models to write drawing and animation p
 
 We study the gap between code and its visual output: a program may run without errors while placing an object incorrectly or producing the wrong motion. We call this the Program-to-Visual (P2V) Gap in the paper. MaLiang-Harness keeps program revisions and their rendered results so models can refer to earlier work during editing and check the revision they are about to export.
 
+![MaLiang-Harness chat interface](assets/web.png)
+
 ## Core Design
 
 | Design | Implementation |
